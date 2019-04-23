@@ -1,0 +1,22 @@
+
+pip install kafka-python
+pip install python-twitter
+pip install tweepy
+
+Start Zookeeper
+/home/marie_montredo/kafka_2.12-2.2.0/bin/zookeeper-server-start.sh  /home/marie_montredo/kafka_2.12-2.2.0/config/zookeeper.properties
+
+Start Kafka
+/home/marie_montredo/kafka_2.12-2.2.0/bin/kafka-server-start.sh /home/marie_montredo/kafka_2.12-2.2.0/config/server.properties
+
+(modify properties in zookeeper config) Dir=  /home/marie_montredo/kafka_2.12-2.2.0/data/zookeeper
+
+Create topic
+/home/marie_montredo/kafka_2.12-2.2.0/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic vache
+
+docker --> db
+
+db connection with helpers
+
+table + load
+
