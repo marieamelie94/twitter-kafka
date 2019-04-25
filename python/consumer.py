@@ -9,7 +9,7 @@ drop_tables()
 create_tables()
 
 def load_to_db(msg):
-    data = msg[6]
+    data = json_msg # msg[6]
     tweets_data = Tweets(
                         id_str=data['id_str'],
                         tweet_id=data['id'],
@@ -27,9 +27,10 @@ def load_to_db(msg):
     print('Loaded data')
 
 
-consumer = KafkaConsumer('vache', value_deserializer=lambda m: json.loads(m.decode('utf-8')))
-for msg in consumer:
-    load_to_db(msg)
+consumer = KafkaConsumer('un', value_deserializer=lambda m: json.loads(m.decode('utf-8')))
+for msg in response: #consumer:
+    json_msg = msg._json
+    load_to_db(json_msg)
 
 
 

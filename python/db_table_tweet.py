@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, Date, Numeric, DateTime, BigInteger
 
 con_yml_dict = {
     'db_user': 'postgresuser' ,
-    'db_passwd': 'postgrespassword',
+    'db_passwd': '##',
     'db_name': 'main',
     'db_host': 'localhost',
     'db_port': '5432'
@@ -21,7 +21,7 @@ hash_id = db_conn.get_hash_id
 
 
 class Tweets(db_conn.get_base()):
-    __tablename__ = 'vache_tweets'
+    __tablename__ = 'un_tweets'
     def __init__(self, **kwargs):
         if 'hash_id' not in kwargs:
             kwargs['hash_id'] = hash_id(kwargs['id_str'])
@@ -32,7 +32,7 @@ class Tweets(db_conn.get_base()):
 
     id_str = Column(String)
     tweet_id = Column(BigInteger)
-    text = Column(String)
+    text = Column(String(length=300))
     tweet_created_at = Column(DateTime(timezone=False))
     retweet_count = Column(BigInteger)
     user_id = Column(BigInteger)
